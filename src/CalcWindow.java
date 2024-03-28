@@ -21,7 +21,7 @@ public class CalcWindow extends JFrame{
         this.add(topPanel, gbc);
         gbc.gridy = 1;
         gbc.weightx = 1;
-        gbc.weighty = 0.6;
+        gbc.weighty = 1;
         this.add(bottomPanel, gbc);
 
         this.setVisible(true);
