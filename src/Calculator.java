@@ -1,7 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Calculator {
+    public static ActionListener listener;
     public static final int BUTTON_ID_0 = 0;
     public static final int BUTTON_ID_1 = 1;
     public static final int BUTTON_ID_2 = 2;
@@ -28,12 +31,27 @@ public class Calculator {
     public static final int BUTTON_ID_CHANGE = 23;
     private static final int STATE_NUM = 0;
     private static final int STATE_OP = 0;
+    Calculator(){
+        listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JButton button = (JButton)e.getSource();
+                String buttonName = button.getName();
+                int hyphenIndex = buttonName.indexOf('-');
+                if(hyphenIndex != -1) {
+                    if(buttonName.substring(0, hyphenIndex).equals("numbutton")){
+                        ButtonClicked(Integer.parseInt(buttonName.substring(hyphenIndex + 1)));
+                    }
+                }
+            }
+        };
+    }
     private int state;
     private double sum = 0;
-    private double currentNum = 0;
     private String currentText = "";
     public void ButtonClicked(int Button_ID)
     {
+        System.out.println(Button_ID);
         switch(Button_ID){
             case Calculator.BUTTON_ID_0:
                 state = STATE_NUM;
@@ -42,10 +60,12 @@ public class Calculator {
                 }
                 break;
             case Calculator.BUTTON_ID_1:
-                
+                state = STATE_NUM;
+                currentText += "1";
                 break;
             case Calculator.BUTTON_ID_2:
-                
+                state = STATE_NUM;
+                currentText += "2";
                 break;
             case Calculator.BUTTON_ID_3:
                 
@@ -107,6 +127,6 @@ public class Calculator {
                 break;
 
         }
-
+        TopPanel.TopPanelListener.actionPerformed(new ActionEvent(new Object(), ActionEvent.ACTION_PERFORMED, String.valueOf(Button_ID)));
     }
 }

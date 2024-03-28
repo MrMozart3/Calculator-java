@@ -119,8 +119,9 @@ public class NumberButton extends JButton {
         this.setForeground(Color.WHITE);
         this.setFont(new Font("Arial", Font.PLAIN, 22));
         //custom id
-        this.setName(String.valueOf(Button_ID));
+        this.setName("numbutton-" + String.valueOf(Button_ID));
         //listeners
+        this.addActionListener(Calculator.listener);
         this.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseEntered(MouseEvent e){
