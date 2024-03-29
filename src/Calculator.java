@@ -2,8 +2,34 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+class ActionData{
+    double text;
+    boolean shouldBePrinted;
+    int operation;
+    ActionData(double text, boolean shouldBePrinted){
+        this.text = text;
+        this.shouldBePrinted = shouldBePrinted;
+        this.operation = -1;
+    }
+}
 public class Calculator {
+    public static String PrintOptimized(double value, int maxPrecision){
+        if(String.valueOf(value).indexOf('e') != -1 || String.valueOf(value).indexOf('E') != -1){
+            return String.format("%." + maxPrecision + "e", value);
+        }
+
+        String initial = String.format("%." + maxPrecision + "f", value);
+        for(int i = 0; i < maxPrecision; i++){
+            if(initial.charAt(initial.length() - 1) == '0'){
+                initial = initial.substring(0, initial.length() - 1);
+                if(i == maxPrecision - 1){
+                    initial = initial.substring(0, initial.length() - 1);
+                }
+            }
+            else break;
+        }
+        return initial;
+    }
     public static ActionListener listener;
     public static final int BUTTON_NONE = -1;
     public static final int BUTTON_ID_0 = 0;
@@ -247,17 +273,25 @@ public class Calculator {
                 throw new IllegalStateException("Unexpected value: " + Button_ID);
         }
         if(OPERATION == BUTTON_NONE){
-            TopPanel.TopPanelListener.actionPerformed(new ActionEvent(new Object(), ActionEvent.ACTION_PERFORMED, "11" + firstNumber));
-            TopPanel.TopPanelListener.actionPerformed(new ActionEvent(new Object(), ActionEvent.ACTION_PERFORMED, "22" + secondNumber));
+            ActionData mainData = new ActionData(firstNumber, true);
+            ActionData secondData = new ActionData(secondNumber, false);
+            MainValuePanel.listener.actionPerformed(new ActionEvent(mainData, ActionEvent.ACTION_PERFORMED, "change_text"));
+            HelperValuePanel.listener.actionPerformed(new ActionEvent(secondData, ActionEvent.ACTION_PERFORMED, "change_text"));
         }
         else if(OPERATION != BUTTON_ID_EQUALS){
-            TopPanel.TopPanelListener.actionPerformed(new ActionEvent(new Object(), ActionEvent.ACTION_PERFORMED, "21" + firstNumber));
-            TopPanel.TopPanelListener.actionPerformed(new ActionEvent(new Object(), ActionEvent.ACTION_PERFORMED, "11" + secondNumber));
+            ActionData mainData = new ActionData(secondNumber, true);
+            ActionData secondData = new ActionData(firstNumber, true);
+            secondData.operation = OPERATION;
+            MainValuePanel.listener.actionPerformed(new ActionEvent(mainData, ActionEvent.ACTION_PERFORMED, "change_text"));
+            HelperValuePanel.listener.actionPerformed(new ActionEvent(secondData, ActionEvent.ACTION_PERFORMED, "change_text"));
         }
         else{
-            TopPanel.TopPanelListener.actionPerformed(new ActionEvent(new Object(), ActionEvent.ACTION_PERFORMED, "11" + secondNumber));
-            TopPanel.TopPanelListener.actionPerformed(new ActionEvent(new Object(), ActionEvent.ACTION_PERFORMED, "22" + firstNumber));
+            ActionData mainData = new ActionData(secondNumber, true);
+            ActionData secondData = new ActionData(firstNumber, false);
+            MainValuePanel.listener.actionPerformed(new ActionEvent(mainData, ActionEvent.ACTION_PERFORMED, "change_text"));
+            HelperValuePanel.listener.actionPerformed(new ActionEvent(secondData, ActionEvent.ACTION_PERFORMED, "change_text"));
         }
         System.out.println(firstNumber + " " + OPERATION + " " + secondNumber);
     }
 }
+
