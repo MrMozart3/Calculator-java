@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 class ActionData{
     double text;
     boolean shouldBePrinted;
@@ -13,18 +16,28 @@ class ActionData{
     }
 }
 public class Calculator {
-    public static String PrintOptimized(double value, int maxPrecision){
-        if(String.valueOf(value).indexOf('e') != -1 || String.valueOf(value).indexOf('E') != -1){
-            return String.format("%." + maxPrecision + "e", value);
+    public static String PrintOptimized(double value){
+
+        NumberFormat formatter = new DecimalFormat("#0000000000.0000000");
+        String initial = formatter.format(value);
+        //System.out.println();
+        if(initial.length() > 18){
+            return String.valueOf(value);
         }
 
-        String initial = String.format("%." + maxPrecision + "f", value);
-        for(int i = 0; i < maxPrecision; i++){
+        for(int i = 0; i < 7; i++){
             if(initial.charAt(initial.length() - 1) == '0'){
                 initial = initial.substring(0, initial.length() - 1);
-                if(i == maxPrecision - 1){
+                if(i == 7 - 1){
                     initial = initial.substring(0, initial.length() - 1);
                 }
+            }
+            else break;
+        }
+
+        for(int i = 0; i < 9; i++){
+            if(initial.charAt(0) == '0'){
+                initial = initial.substring(1);
             }
             else break;
         }
@@ -234,36 +247,23 @@ public class Calculator {
                 }
                 break;
             case Calculator.BUTTON_ID_DIVIDE:
-                if(OPERATION == BUTTON_ID_EQUALS){
-                    firstNumber = secondNumber;
-                    secondNumber = 0;
-                }
                 OPERATION = BUTTON_ID_DIVIDE;
                 break;
             case Calculator.BUTTON_ID_MULTIPLY:
-                if(OPERATION == BUTTON_ID_EQUALS){
-                    firstNumber = secondNumber;
-                    secondNumber = 0;
-                }
                 OPERATION = BUTTON_ID_MULTIPLY;
                 break;
             case Calculator.BUTTON_ID_SUBTRACT:
-                if(OPERATION == BUTTON_ID_EQUALS){
-                    firstNumber = secondNumber;
-                    secondNumber = 0;
-                }
                 OPERATION = BUTTON_ID_SUBTRACT;
                 break;
             case Calculator.BUTTON_ID_SUM:
-                if(OPERATION == BUTTON_ID_EQUALS){
-                    firstNumber = secondNumber;
-                    secondNumber = 0;
-                }
                 OPERATION = BUTTON_ID_SUM;
                 break;
             case Calculator.BUTTON_ID_EQUALS:
-                secondNumber = Calculate(OPERATION);
-                OPERATION = BUTTON_ID_EQUALS;
+                if(OPERATION != BUTTON_NONE) {
+                    firstNumber = Calculate(OPERATION);
+                    secondNumber = 0;
+                    OPERATION = BUTTON_NONE;
+                }
                 break;
             case Calculator.BUTTON_ID_CHANGE:
                 break;
@@ -272,25 +272,19 @@ public class Calculator {
             default:
                 throw new IllegalStateException("Unexpected value: " + Button_ID);
         }
-        if(OPERATION == BUTTON_NONE){
-            ActionData mainData = new ActionData(firstNumber, true);
-            ActionData secondData = new ActionData(secondNumber, false);
-            MainValuePanel.listener.actionPerformed(new ActionEvent(mainData, ActionEvent.ACTION_PERFORMED, "change_text"));
-            HelperValuePanel.listener.actionPerformed(new ActionEvent(secondData, ActionEvent.ACTION_PERFORMED, "change_text"));
-        }
-        else if(OPERATION != BUTTON_ID_EQUALS){
-            ActionData mainData = new ActionData(secondNumber, true);
-            ActionData secondData = new ActionData(firstNumber, true);
-            secondData.operation = OPERATION;
-            MainValuePanel.listener.actionPerformed(new ActionEvent(mainData, ActionEvent.ACTION_PERFORMED, "change_text"));
-            HelperValuePanel.listener.actionPerformed(new ActionEvent(secondData, ActionEvent.ACTION_PERFORMED, "change_text"));
+        ActionData mainData;
+        ActionData secondData;
+        if(OPERATION == BUTTON_NONE || OPERATION == BUTTON_ID_EQUALS){
+            mainData = new ActionData(firstNumber, true);
+            secondData = new ActionData(secondNumber, false);
         }
         else{
-            ActionData mainData = new ActionData(secondNumber, true);
-            ActionData secondData = new ActionData(firstNumber, false);
-            MainValuePanel.listener.actionPerformed(new ActionEvent(mainData, ActionEvent.ACTION_PERFORMED, "change_text"));
-            HelperValuePanel.listener.actionPerformed(new ActionEvent(secondData, ActionEvent.ACTION_PERFORMED, "change_text"));
+            mainData = new ActionData(secondNumber, true);
+            secondData = new ActionData(firstNumber, true);
+            secondData.operation = OPERATION;
         }
+        MainValuePanel.listener.actionPerformed(new ActionEvent(mainData, ActionEvent.ACTION_PERFORMED, "change_text"));
+        HelperValuePanel.listener.actionPerformed(new ActionEvent(secondData, ActionEvent.ACTION_PERFORMED, "change_text"));
         System.out.println(firstNumber + " " + OPERATION + " " + secondNumber);
     }
 }

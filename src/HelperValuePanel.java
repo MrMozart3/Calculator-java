@@ -25,18 +25,18 @@ public class HelperValuePanel extends JPanel {
                     ActionData actionData = (ActionData) e.getSource();
                     String text;
                     if(actionData.shouldBePrinted){
-                        text = Calculator.PrintOptimized(actionData.text, 7);
+                        text = Calculator.PrintOptimized(actionData.text);
                         if(actionData.operation == 17){
-                            text += " /";
+                            text += " / ";
                         }
                         else if(actionData.operation == 18){
-                            text += " x";
+                            text += " x ";
                         }
                         else if(actionData.operation == 19){
-                            text += " -";
+                            text += " - ";
                         }
                         else if(actionData.operation == 20){
-                            text += " +";
+                            text += " + ";
                         }
                     }
                     else{

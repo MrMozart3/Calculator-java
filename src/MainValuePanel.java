@@ -24,7 +24,7 @@ public class MainValuePanel extends JPanel {
                 if(e.getActionCommand().equals("change_text")){
                     ActionData actionData = (ActionData) e.getSource();
                     if(actionData.shouldBePrinted){
-                        ChangeText(Calculator.PrintOptimized(actionData.text, 7));
+                        ChangeText(Calculator.PrintOptimized(actionData.text));
                     }
                     else{
                         ChangeText(" ");

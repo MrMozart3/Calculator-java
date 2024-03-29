@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ed634f1-2344-4c94-9894-95616ab8d98b" name="Changes" comment="added actions listeners, working buttons, basic display&#10;+">
-      <change afterPath="$PROJECT_DIR$/src/HelperValuePanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MainValuePanel.java" afterDir="false" />
+    <list default="true" id="5ed634f1-2344-4c94-9894-95616ab8d98b" name="Changes" comment="fixed screen, better UI for showing numbers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CalcWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalcWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Calculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TopPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TopPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HelperValuePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HelperValuePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainValuePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainValuePanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +106,7 @@
       <updated>1711602536907</updated>
       <workItem from="1711602537957" duration="10704000" />
       <workItem from="1711617479642" duration="5592000" />
-      <workItem from="1711727333012" duration="3807000" />
+      <workItem from="1711727333012" duration="8507000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <option name="closed" value="true" />
@@ -143,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711656901468</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fixed screen, better UI for showing numbers">
+      <option name="closed" value="true" />
+      <created>1711732595491</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1711732595492</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,7 +174,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First Commit" />
     <MESSAGE value="added actions listeners, working buttons, basic display&#10;+" />
-    <option name="LAST_COMMIT_MESSAGE" value="added actions listeners, working buttons, basic display&#10;+" />
+    <MESSAGE value="fixed screen, better UI for showing numbers" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed screen, better UI for showing numbers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
