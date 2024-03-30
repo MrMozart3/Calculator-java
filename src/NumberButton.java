@@ -72,32 +72,40 @@ public class NumberButton extends JButton {
                 this.setText("C");
                 break;
             case Calculator.BUTTON_ID_DEL:
-                ImageIcon tempImage = new ImageIcon("Assets/BUTTON_DEL.png");
-                this.setIcon(ScaleIcon(tempImage, 35));
+                ImageIcon delIcon = new ImageIcon("Assets/BUTTON_DEL.png");
+                this.setIcon(ScaleIcon(delIcon, 35));
                 break;
             case Calculator.BUTTON_ID_1X:
-                this.setText("1/x");
+                ImageIcon xIcon = new ImageIcon("Assets/BUTTON_1X.png");
+                this.setIcon(ScaleIcon(xIcon, 50));
                 break;
             case Calculator.BUTTON_ID_X2:
-                this.setText("x^2");
+                ImageIcon x2Icon = new ImageIcon("Assets/BUTTON_X2.png");
+                this.setIcon(ScaleIcon(x2Icon, 28));
                 break;
             case Calculator.BUTTON_ID_SQRT2:
-                this.setText("sqrt(x)");
+                ImageIcon sqrtIcon = new ImageIcon("Assets/BUTTON_SQRT.png");
+                this.setIcon(ScaleIcon(sqrtIcon, 38));
                 break;
             case Calculator.BUTTON_ID_DIVIDE:
-                this.setText("/");
+                ImageIcon divideIcon = new ImageIcon("Assets/BUTTON_DIVIDE.png");
+                this.setIcon(ScaleIcon(divideIcon, 35));
                 break;
             case Calculator.BUTTON_ID_MULTIPLY:
-                this.setText("x");
+                ImageIcon multiplyIcon = new ImageIcon("Assets/BUTTON_MULTIPLY.png");
+                this.setIcon(ScaleIcon(multiplyIcon, 32));
                 break;
             case Calculator.BUTTON_ID_SUBTRACT:
-                this.setText("-");
+                ImageIcon subtractIcon = new ImageIcon("Assets/BUTTON_SUBTRACT.png");
+                this.setIcon(ScaleIcon(subtractIcon, 28));
                 break;
             case Calculator.BUTTON_ID_SUM:
-                this.setText("+");
+                ImageIcon sumIcon = new ImageIcon("Assets/BUTTON_SUM.png");
+                this.setIcon(ScaleIcon(sumIcon, 23));
                 break;
             case Calculator.BUTTON_ID_EQUALS:
-                this.setText("=");
+                ImageIcon equalsIcon = new ImageIcon("Assets/BUTTON_EQUALS.png");
+                this.setIcon(ScaleIcon(equalsIcon, 20));
                 break;
             case Calculator.BUTTON_ID_CHANGE:
                 this.setText("+/-");

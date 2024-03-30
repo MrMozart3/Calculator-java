@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5ed634f1-2344-4c94-9894-95616ab8d98b" name="Changes" comment="Fixed many buttons, added support for multiple operations">
+    <list default="true" id="5ed634f1-2344-4c94-9894-95616ab8d98b" name="Changes" comment="Fixed many bugs, cleaned code, almost ready">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Calculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HelperValuePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HelperValuePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainValuePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainValuePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NumberButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NumberButton.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +34,7 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="6dae716c-d899-4813-aa29-6170b8dd2cfc" />
+        <option name="accountId" value="0a46f130-da02-4e29-81ee-6210bfc2b8b4" />
         <option name="url" value="https://github.com/MrMozart3/Calculator-java.git" />
       </UrlAndAccount>
     </option>
@@ -107,7 +107,7 @@
       <workItem from="1711602537957" duration="10704000" />
       <workItem from="1711617479642" duration="5592000" />
       <workItem from="1711727333012" duration="14206000" />
-      <workItem from="1711756206145" duration="6387000" />
+      <workItem from="1711756206145" duration="9968000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit">
       <option name="closed" value="true" />
@@ -157,7 +157,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711746137131</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Fixed many bugs, cleaned code, almost ready">
+      <option name="closed" value="true" />
+      <created>1711762737934</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1711762737934</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,7 +193,8 @@
     <MESSAGE value="added actions listeners, working buttons, basic display&#10;+" />
     <MESSAGE value="fixed screen, better UI for showing numbers" />
     <MESSAGE value="Fixed many buttons, added support for multiple operations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed many buttons, added support for multiple operations" />
+    <MESSAGE value="Fixed many bugs, cleaned code, almost ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed many bugs, cleaned code, almost ready" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -196,9 +205,9 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Calculator.java</url>
-          <line>112</line>
-          <option name="timeStamp" value="11" />
+          <url>file://$PROJECT_DIR$/src/MainValuePanel.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

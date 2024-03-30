@@ -9,10 +9,12 @@ class ActionData{
     double value;
     boolean shouldBePrinted;
     int operation;
-    ActionData(double value, boolean shouldBePrinted){
+    int firstDecimal;
+    ActionData(double value, boolean shouldBePrinted, int firstDecimal){
         this.value = value;
         this.shouldBePrinted = shouldBePrinted;
         this.operation = -1;
+        this.firstDecimal = firstDecimal;
     }
 }
 public class Calculator {
@@ -113,7 +115,9 @@ public class Calculator {
         switch(Button_ID){
             case Calculator.BUTTON_ID_0:
                 if (OPERATION == BUTTON_NONE) {
-                    //
+                    if(firstDecimal >= 0){
+                        firstDecimal++;
+                    }
                 } else {
                     secondNumber *= 10;
                 }
@@ -277,7 +281,14 @@ public class Calculator {
                         String text = PrintOptimized(firstNumber);
                         if(text.indexOf('e') == -1 && text.indexOf('E') == -1){
                             text = text.substring(0, text.length() - 1);
+                            text = text.replace(',', '.');
+                            firstNumber = Double.parseDouble(text);
+                            text = PrintOptimized(firstNumber);
                             int found = text.indexOf(',');
+                            if(found == -1){
+                                firstDecimal = -1;
+                                break;
+                            }
                             text = text.replace(',', '.');
                             firstDecimal = text.length() - found - 1;
                             firstNumber = Double.parseDouble(text);
@@ -338,7 +349,14 @@ public class Calculator {
                     firstNumber = Calculate(OPERATION);
                     secondNumber = 0;
                     OPERATION = BUTTON_NONE;
+
+                    String text = PrintOptimized(firstNumber);
+                    int found = text.indexOf(',');
+                    text = text.replace(',', '.');
+                    firstDecimal = text.length() - found - 1;
+                    firstNumber = Double.parseDouble(text);
                 }
+
                 break;
             case Calculator.BUTTON_ID_CHANGE:
                 if(OPERATION == BUTTON_NONE) {
@@ -362,22 +380,23 @@ public class Calculator {
         ActionData mainData;
         ActionData secondData;
         if(OPERATION == BUTTON_NONE){
-            mainData = new ActionData(firstNumber, true);
-            secondData = new ActionData(secondNumber, false);
+            mainData = new ActionData(firstNumber, true, firstDecimal);
+            secondData = new ActionData(secondNumber, false, secondDecimal);
         }
         else if(OPERATION == BUTTON_ID_PERCENT){
-            mainData = new ActionData(firstNumber, true);
-            secondData = new ActionData(secondNumber, false);
+            mainData = new ActionData(firstNumber, true, firstDecimal);
+            secondData = new ActionData(secondNumber, false, firstDecimal);
             mainData.operation = OPERATION;
             OPERATION = BUTTON_NONE;
         }
         else{
-            mainData = new ActionData(secondNumber, true);
-            secondData = new ActionData(firstNumber, true);
+            mainData = new ActionData(secondNumber, true, secondDecimal);
+            secondData = new ActionData(firstNumber, true, firstDecimal);
             secondData.operation = OPERATION;
         }
         MainValuePanel.listener.actionPerformed(new ActionEvent(mainData, ActionEvent.ACTION_PERFORMED, "change_text"));
         HelperValuePanel.listener.actionPerformed(new ActionEvent(secondData, ActionEvent.ACTION_PERFORMED, "change_text"));
+        System.out.println(firstNumber + " -> " + firstDecimal +  " | " + secondNumber + " -> " + secondDecimal + " | " + OPERATION);
     }
 }
 

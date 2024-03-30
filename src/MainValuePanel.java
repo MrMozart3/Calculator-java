@@ -31,6 +31,19 @@ public class MainValuePanel extends JPanel {
                         }
                         else {
                             text = Calculator.PrintOptimized(actionData.value);
+                            if(actionData.firstDecimal == 0){
+                                text += ",";
+                            }
+                            else if(actionData.firstDecimal > 0) {
+                                int found = text.indexOf(",");
+                                String temp = text;
+                                int shortOf = found;
+                                if(text.length() - found - 1 < actionData.firstDecimal) {
+                                    for (int i = 0; i < actionData.firstDecimal - (text.length() - found - 1); i++) {
+                                        text += "0";
+                                    }
+                                }
+                            }
                         }
                     }
                     else{
