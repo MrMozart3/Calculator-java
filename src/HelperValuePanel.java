@@ -25,7 +25,7 @@ public class HelperValuePanel extends JPanel {
                     ActionData actionData = (ActionData) e.getSource();
                     String text;
                     if(actionData.shouldBePrinted){
-                        text = Calculator.PrintOptimized(actionData.text);
+                        text = Calculator.PrintOptimized(actionData.value);
                         if(actionData.operation == 17){
                             text += " / ";
                         }

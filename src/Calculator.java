@@ -6,21 +6,25 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 class ActionData{
-    double text;
+    double value;
     boolean shouldBePrinted;
     int operation;
-    ActionData(double text, boolean shouldBePrinted){
-        this.text = text;
+    ActionData(double value, boolean shouldBePrinted){
+        this.value = value;
         this.shouldBePrinted = shouldBePrinted;
         this.operation = -1;
     }
 }
 public class Calculator {
     public static String PrintOptimized(double value){
-
+        boolean negative = false;
         NumberFormat formatter = new DecimalFormat("#0000000000.0000000");
         String initial = formatter.format(value);
-        //System.out.println();
+        if(initial.charAt(0) == '-') {
+            negative = true;
+            initial = initial.substring(1);
+        }
+
         if(initial.length() > 18){
             return String.valueOf(value);
         }
@@ -40,6 +44,10 @@ public class Calculator {
                 initial = initial.substring(1);
             }
             else break;
+        }
+
+        if(negative){
+            return "-" + initial;
         }
         return initial;
     }
@@ -90,6 +98,7 @@ public class Calculator {
     private double firstNumber = 0;
     private double secondNumber = 0;
     private int OPERATION = BUTTON_NONE;
+    private int firstDecimal = -1, secondDecimal = -1;
     private double Calculate(int Operation_ID){
         return switch (Operation_ID) {
             case Calculator.BUTTON_ID_DIVIDE -> firstNumber / secondNumber;
@@ -103,101 +112,151 @@ public class Calculator {
     {
         switch(Button_ID){
             case Calculator.BUTTON_ID_0:
-                if(OPERATION == BUTTON_NONE) firstNumber *= 10;
-                else if(OPERATION != BUTTON_ID_EQUALS) secondNumber *= 10;
+                if (OPERATION == BUTTON_NONE) {
+                    //
+                } else {
+                    secondNumber *= 10;
+                }
                 break;
             case Calculator.BUTTON_ID_1:
                 if(OPERATION == BUTTON_NONE) {
-                    firstNumber *= 10;
-                    firstNumber += 1;
+                    if(firstDecimal >= 0){
+                        firstNumber += Math.pow(0.1, ++firstDecimal);
+                    }
+                    else {
+                        firstNumber *= 10;
+                        firstNumber += 1;
+                    }
                 }
-                else if(OPERATION != BUTTON_ID_EQUALS){
+                else{
                     secondNumber *= 10;
                     secondNumber += 1;
                 }
                 break;
             case Calculator.BUTTON_ID_2:
                 if(OPERATION == BUTTON_NONE) {
-                    firstNumber *= 10;
-                    firstNumber += 2;
+                    if(firstDecimal >= 0){
+                        firstNumber += Math.pow(0.1, ++firstDecimal) * 2;
+                    }
+                    else {
+                        firstNumber *= 10;
+                        firstNumber += 2;
+                    }
                 }
-                else if(OPERATION != BUTTON_ID_EQUALS){
+                else{
                     secondNumber *= 10;
                     secondNumber += 2;
                 }
                 break;
             case Calculator.BUTTON_ID_3:
                 if(OPERATION == BUTTON_NONE) {
-                    firstNumber *= 10;
-                    firstNumber += 3;
+                    if(firstDecimal >= 0){
+                        firstNumber += Math.pow(0.1, ++firstDecimal) * 3;
+                    }
+                    else {
+                        firstNumber *= 10;
+                        firstNumber += 3;
+                    }
                 }
-                else if(OPERATION != BUTTON_ID_EQUALS){
+                else{
                     secondNumber *= 10;
                     secondNumber += 3;
                 }
                 break;
             case Calculator.BUTTON_ID_4:
                 if(OPERATION == BUTTON_NONE) {
-                    firstNumber *= 10;
-                    firstNumber += 4;
+                    if(firstDecimal >= 0){
+                        firstNumber += Math.pow(0.1, ++firstDecimal) * 4;
+                    }
+                    else {
+                        firstNumber *= 10;
+                        firstNumber += 4;
+                    }
                 }
-                else if(OPERATION != BUTTON_ID_EQUALS){
+                else{
                     secondNumber *= 10;
                     secondNumber += 4;
                 }
                 break;
             case Calculator.BUTTON_ID_5:
                 if(OPERATION == BUTTON_NONE) {
-                    firstNumber *= 10;
-                    firstNumber += 5;
+                    if(firstDecimal >= 0){
+                        firstNumber += Math.pow(0.1, ++firstDecimal) * 5;
+                    }
+                    else {
+                        firstNumber *= 10;
+                        firstNumber += 5;
+                    }
                 }
-                else if(OPERATION != BUTTON_ID_EQUALS){
+                else{
                     secondNumber *= 10;
                     secondNumber += 5;
                 }
                 break;
             case Calculator.BUTTON_ID_6:
                 if(OPERATION == BUTTON_NONE) {
-                    firstNumber *= 10;
-                    firstNumber += 6;
+                    if(firstDecimal >= 0){
+                        firstNumber += Math.pow(0.1, ++firstDecimal) * 6;
+                    }
+                    else {
+                        firstNumber *= 10;
+                        firstNumber += 6;
+                    }
                 }
-                else if(OPERATION != BUTTON_ID_EQUALS){
+                else{
                     secondNumber *= 10;
                     secondNumber += 6;
                 }
                 break;
             case Calculator.BUTTON_ID_7:
                 if(OPERATION == BUTTON_NONE) {
-                    firstNumber *= 10;
-                    firstNumber += 7;
+                    if(firstDecimal >= 0){
+                        firstNumber += Math.pow(0.1, ++firstDecimal) * 7;
+                    }
+                    else {
+                        firstNumber *= 10;
+                        firstNumber += 7;
+                    }
                 }
-                else if(OPERATION != BUTTON_ID_EQUALS){
+                else{
                     secondNumber *= 10;
                     secondNumber += 7;
                 }
                 break;
             case Calculator.BUTTON_ID_8:
                 if(OPERATION == BUTTON_NONE) {
-                    firstNumber *= 10;
-                    firstNumber += 8;
+                    if(firstDecimal >= 0){
+                        firstNumber += Math.pow(0.1, ++firstDecimal) * 8;
+                    }
+                    else {
+                        firstNumber *= 10;
+                        firstNumber += 8;
+                    }
                 }
-                else if(OPERATION != BUTTON_ID_EQUALS){
+                else{
                     secondNumber *= 10;
                     secondNumber += 8;
                 }
                 break;
             case Calculator.BUTTON_ID_9:
                 if(OPERATION == BUTTON_NONE) {
-                    firstNumber *= 10;
-                    firstNumber += 9;
+                    if(firstDecimal >= 0){
+                        firstNumber += Math.pow(0.1, ++firstDecimal) * 9;
+                    }
+                    else {
+                        firstNumber *= 10;
+                        firstNumber += 9;
+                    }
                 }
-                else if(OPERATION != BUTTON_ID_EQUALS){
+                else{
                     secondNumber *= 10;
                     secondNumber += 9;
                 }
                 break;
             case Calculator.BUTTON_ID_PERCENT:
-                
+                if(OPERATION == BUTTON_NONE){
+                    OPERATION = BUTTON_ID_PERCENT;
+                }
                 break;
             case Calculator.BUTTON_ID_CE:
                 if(OPERATION == BUTTON_NONE) {
@@ -214,8 +273,24 @@ public class Calculator {
                 break;
             case Calculator.BUTTON_ID_DEL:
                 if(OPERATION == BUTTON_NONE) {
-                    firstNumber /= 10;
-                    firstNumber = Math.floor(firstNumber);
+                    if(firstDecimal > 0){
+                        String text = PrintOptimized(firstNumber);
+                        if(text.indexOf('e') == -1 && text.indexOf('E') == -1){
+                            text = text.substring(0, text.length() - 1);
+                            int found = text.indexOf(',');
+                            text = text.replace(',', '.');
+                            firstDecimal = text.length() - found - 1;
+                            firstNumber = Double.parseDouble(text);
+                        }
+                        else{
+                            firstDecimal = -1;
+                            firstNumber = -1;
+                        }
+                    }
+                    else{
+                        firstNumber -= firstNumber % 10;
+                        firstNumber /= 10;
+                    }
                 }
                 else{
                     secondNumber /= 10;
@@ -226,7 +301,7 @@ public class Calculator {
                 if(OPERATION == BUTTON_NONE) {
                     firstNumber = 1 / firstNumber;
                 }
-                else if(OPERATION != BUTTON_ID_EQUALS){
+                else{
                     secondNumber = 1 / secondNumber;
                 }
                 break;
@@ -234,7 +309,7 @@ public class Calculator {
                 if(OPERATION == BUTTON_NONE) {
                     firstNumber *= firstNumber;
                 }
-                else if(OPERATION != BUTTON_ID_EQUALS){
+                else{
                     secondNumber *= secondNumber;
                 }
                 break;
@@ -242,7 +317,7 @@ public class Calculator {
                 if(OPERATION == BUTTON_NONE) {
                     firstNumber = Math.sqrt(firstNumber);
                 }
-                else if(OPERATION != BUTTON_ID_EQUALS){
+                else{
                     secondNumber = Math.sqrt(secondNumber);
                 }
                 break;
@@ -266,17 +341,35 @@ public class Calculator {
                 }
                 break;
             case Calculator.BUTTON_ID_CHANGE:
+                if(OPERATION == BUTTON_NONE) {
+                    firstNumber *= -1;
+                }
+                else{
+                    secondNumber *= -1;
+                }
                 break;
             case Calculator.BUTTON_ID_DECIMAL:
+                if(OPERATION == BUTTON_NONE) {
+                    firstDecimal = 0;
+                }
+                else{
+                    secondDecimal = 0;
+                }
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + Button_ID);
         }
         ActionData mainData;
         ActionData secondData;
-        if(OPERATION == BUTTON_NONE || OPERATION == BUTTON_ID_EQUALS){
+        if(OPERATION == BUTTON_NONE){
             mainData = new ActionData(firstNumber, true);
             secondData = new ActionData(secondNumber, false);
+        }
+        else if(OPERATION == BUTTON_ID_PERCENT){
+            mainData = new ActionData(firstNumber, true);
+            secondData = new ActionData(secondNumber, false);
+            mainData.operation = OPERATION;
+            OPERATION = BUTTON_NONE;
         }
         else{
             mainData = new ActionData(secondNumber, true);
@@ -285,7 +378,6 @@ public class Calculator {
         }
         MainValuePanel.listener.actionPerformed(new ActionEvent(mainData, ActionEvent.ACTION_PERFORMED, "change_text"));
         HelperValuePanel.listener.actionPerformed(new ActionEvent(secondData, ActionEvent.ACTION_PERFORMED, "change_text"));
-        System.out.println(firstNumber + " " + OPERATION + " " + secondNumber);
     }
 }
 

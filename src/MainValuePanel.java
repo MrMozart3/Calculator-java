@@ -23,12 +23,20 @@ public class MainValuePanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if(e.getActionCommand().equals("change_text")){
                     ActionData actionData = (ActionData) e.getSource();
+                    String text;
                     if(actionData.shouldBePrinted){
-                        ChangeText(Calculator.PrintOptimized(actionData.text));
+                        if(actionData.operation == Calculator.BUTTON_ID_PERCENT){
+                            text = Calculator.PrintOptimized(actionData.value * 100);
+                            text += "%";
+                        }
+                        else {
+                            text = Calculator.PrintOptimized(actionData.value);
+                        }
                     }
                     else{
-                        ChangeText(" ");
+                        text = "";
                     }
+                    ChangeText(text);
                 }
             }
         };
